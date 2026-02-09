@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine 💘</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Times New Roman", cursive, sans-serif;
+      background: linear-gradient(135deg, #ffd6e8, #fff1f7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #ff4d88;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 20px;
+      margin: 20px 0;
+    }
+
+    .buttons {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      height: 140px;
+      margin-top: 20px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 14px 22px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    #yesBtn {
+      background-color: #ff66a3;
+      color: white;
+      margin-top: 20px;
+    }
+
+    #noBtn {
+      background-color: #d9d9d9;
+      color: #333;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 id="question">My dear Irene, will you be my Valentine? 💘</h1>
+
+  <img
+    id="catImg"
+    src="https://media.tenor.com/JttVZJbiaRYAAAAi/cute-cat-smiling.gif"
+    alt=""
+  />
+
+  <div class="buttons">
+    <button id="noBtn">No 💔</button>
+    <button id="yesBtn">Yes 💖</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const question = document.getElementById("question");
+    const catImg = document.getElementById("catImg");
+
+    const phrases = [
+      "Are you sure?",
+      "Hey Irene!",
+      "Stop that 😾",
+      "Nice try!",
+      "Almost!",
+      "Nope 😼",
+      "Try again!"
+    ];
+
+    let phraseIndex = 0;
+
+    function moveNoButton() {
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = window.innerWidth - btnRect.width;
+      const maxY = window.innerHeight - btnRect.height;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.position = "fixed";
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+
+      noBtn.textContent = phrases[phraseIndex % phrases.length];
+      phraseIndex++;
+    }
+
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    yesBtn.addEventListener("click", () => {
+      question.textContent = "YIPPIEEE!!! 💕🐾";
+      catImg.src = "https://media.tenor.com/DpJdyKQKgYkAAAAj/cat-jump.gif";
+      document.querySelector(".buttons").style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
